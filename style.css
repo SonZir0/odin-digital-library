@@ -1,0 +1,84 @@
+html {
+    box-sizing: border-box;
+    --interfaceColor: #dbeafe;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100svh;
+    text-align: center;
+    background-color: aliceblue;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+header {
+    background-color: var(--interfaceColor);
+    box-shadow: 1px 3px 3px 0px #d4d4d4;
+}
+
+main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    & dialog+button {
+        min-width: 170px;
+        padding: 0rem 1.5rem;
+        border-radius: 20px;
+        background-color: var(--interfaceColor);
+        align-self: center;
+
+        & span {
+            font-size: 1.25rem;
+            vertical-align: middle;
+        }
+
+        & span+span {
+            margin-left: 3px;
+            font-size: 2rem;
+        }
+    }
+
+    & .bookCards{
+        flex: 1 1 auto;
+        margin: 0px 15%;
+        
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 300px);
+        justify-content: center;
+        gap: 1rem;
+
+        & .card {
+            height: 300px;
+            border-radius: 12px;
+            text-align: start;
+            background-color: aquamarine;
+
+            display: grid;
+            padding: 1rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 0px 1rem;
+
+            & p {
+                margin: 0px;
+                grid-column: 1/ span 2;
+            }
+        }
+    }
+}
+
+footer {
+    flex: none;
+    padding: 0.6rem;
+    font-size: 1.25rem;
+    background-color: #a8adc7;
+}
