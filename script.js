@@ -14,6 +14,7 @@ Book.prototype.addBookToLibrary = function() {
 Book.prototype.removeFromLibrary = function() {
     if (Library.includes(this))
         Library.splice(Library.indexOf(this),1);
+    else console.log("No such book in the library!");
 };
 
 function logAllBooks() {
@@ -25,3 +26,16 @@ function logAllBooks() {
          ${lastPart}`);
     });
 }
+
+// modal dialog stuff 
+const dialog = document.querySelector("dialog");
+const newBook = document.querySelector("dialog+button");
+const closeDialog = document.querySelector(".close");
+
+newBook.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+closeDialog.addEventListener("click", () => {
+    dialog.close();
+});

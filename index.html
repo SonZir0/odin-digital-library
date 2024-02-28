@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,46 @@
     </header>
     <main>
         <dialog>
-            <button></button>
+            <button class="close">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px"
+                    height="20px" viewBox="0 -0.5 8 8" version="1.1">
+
+                    <title>close_mini [#1522]</title>
+                    <desc>Created with Sketch.</desc>
+                    <defs>
+
+                    </defs>
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Dribbble-Light-Preview" transform="translate(-385.000000, -206.000000)" fill="#000000">
+                            <g id="icons" transform="translate(56.000000, 160.000000)">
+                                <polygon id="close_mini-[#1522]"
+                                    points="334.6 49.5 337 51.6 335.4 53 333 50.9 330.6 53 329 51.6 331.4 49.5 329 47.4 330.6 46 333 48.1 335.4 46 337 47.4">
+
+                                </polygon>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+            <form action="" method="dialog">
+                <div>
+                    <label for="titleInput">Book title:</label>
+                    <input type="text" name="title" id="titleInput" required>
+                </div>
+                <div>
+                    <label for="authorInput">Author:</label>
+                    <input type="text" name="author" id="authorInput" required>
+                </div>
+                <div>
+                    <label for="pagesInput">Page count:</label>
+                    <input type="number" name="pages" id="pagesInput" min="1" required>
+                </div>
+                <div class="checkboxContainer">
+                    <label for="isFinished">Have you read this book?</label>
+                    <input type="checkbox" name="isFinished" id="isFinished" checked>
+                </div>
+                <button class="submit">Add book</button>
+            </form>
         </dialog>
         <button>
             <span>Add a book</span><span>+</span>
@@ -24,7 +64,7 @@
             <div class="card">
                 <p class="title">Title</p>
                 <p class="author">Author</p>
-                <p class="pages">Pages</p>  
+                <p class="pages">Pages</p>
                 <div class="buttonsPanel">
                     <button class="status">Finished?</button>
                     <button class="remove">Delete</button>
@@ -34,4 +74,5 @@
     </main>
     <footer>Made by yours truly, sonziro</footer>
 </body>
+
 </html>
