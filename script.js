@@ -58,16 +58,6 @@ Book.prototype.removeFromLibrary = function () {
     else console.log("No such book in the library!");
 };
 
-function logAllBooks() {
-    Library.forEach(Book => {
-        let lastPart = Book.isFinished ?
-            "You have already read this book." :
-            "You haven't read this book yet.";
-        console.log(`This is "${Book.title}" by ${Book.author}. This book is ${Book.pageCount} pages long.
-         ${lastPart}`);
-    });
-}
-
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
 });

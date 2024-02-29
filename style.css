@@ -58,6 +58,7 @@ main {
 
         display: grid;
         grid-template-columns: repeat(auto-fit, 320px);
+        grid-template-rows: min-content;
         justify-content: center;
         gap: 1rem;
 
@@ -78,7 +79,7 @@ main {
 
                 overflow: auto;
                 overflow-wrap: break-word;
-                max-height: 2.3lh;
+                max-height: 2.4lh;
             }
 
             .title {
@@ -97,12 +98,12 @@ main {
                     padding: 0.5rem 1rem;
                 }
 
-                .finished {
-                    background-color: var(--finished);
+                .status {
+                    background-color: var(--notFinished);
                 }
 
-                .notFinished {
-                    background-color: var(--notFinished);
+                .finished {
+                    background-color: var(--finished);
                 }
 
                 .remove {
