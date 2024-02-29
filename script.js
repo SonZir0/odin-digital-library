@@ -13,9 +13,43 @@ function Book(title, author, pageCount, isFinished) {
     this.isFinished = isFinished;
 }
 
-addBookToLibrary = function (userInput) {
+function addBookToLibrary(userInput) {
     let newBook = new Book(...userInput);
     Library.push(newBook);
+
+    // creation of book card on a page
+    let newBookCard = document.createElement("div");
+    newBookCard.classList.add("card");
+
+    let title = document.createElement("p");
+    title.classList.add("title");
+    title.textContent = userInput[0];
+
+    let author = document.createElement("p");
+    author.classList.add("author");
+    author.textContent = userInput[1];
+
+    let pageCount = document.createElement("p");
+    pageCount.classList.add("pages");
+    pageCount.textContent = userInput[2];
+
+    let isFinished = document.createElement("button");
+    isFinished.classList.add("status");
+    if (userInput[3]) {
+        isFinished.textContent = "Finished";
+        isFinished.classList.add("finished");
+    } else isFinished.textContent = "Not read";
+
+    let deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("remove");
+    deleteBtn.textContent = "Delete";
+
+    let btnPanel = document.createElement("div");
+    btnPanel.classList.add("buttonsPanel");
+    btnPanel.append(isFinished, deleteBtn);
+
+    newBookCard.append(title, author, pageCount, btnPanel);
+    bookCards.append(newBookCard);
 };
 
 Book.prototype.removeFromLibrary = function () {
@@ -34,15 +68,13 @@ function logAllBooks() {
     });
 }
 
-// modal dialog stuff 
-
-
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
 });
 
 cancelBtn.addEventListener("click", () => {
     dialog.close();
+    clearInput()
 });
 
 submitBtn.addEventListener("click", (e) => {
@@ -54,6 +86,15 @@ submitBtn.addEventListener("click", (e) => {
         // input[3](checkbox) value is "on" instead of true/false, so we take it separately
         inputValues[3] = inputArray[3].checked;
         addBookToLibrary(inputValues);
+        dialog.close();
+        clearInput();
     }
 });
+
+function clearInput() {
+    for(let i = 0; i < 3; i++) {
+        inputsList[i].value = "";
+    }
+    inputsList[3].checked = false;
+}
 
