@@ -54,13 +54,13 @@ main {
 
     .bookCards {
         flex: 1 1 auto;
-        margin: 0px 15%;
+        margin: 0px 12%;
 
         display: grid;
         grid-template-columns: repeat(auto-fit, 320px);
         grid-template-rows: min-content;
         justify-content: center;
-        gap: 1rem;
+        gap: 2rem;
 
         .card {
             height: max-content;
