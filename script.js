@@ -39,6 +39,11 @@ function addBookToLibrary(userInput) {
         isFinished.textContent = "Finished";
         isFinished.classList.add("finished");
     } else isFinished.textContent = "Not read";
+    // isFinished toggle
+    isFinished.addEventListener("click", () => {
+        let result = isFinished.classList.toggle("finished");
+        isFinished.textContent = result ? "Finished" : "Not read";
+    });
 
     let deleteBtn = document.createElement("button");
     deleteBtn.classList.add("remove");
