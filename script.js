@@ -1,4 +1,6 @@
 const Library = [];
+let nextBookID = 1;
+
 const bookCards = document.querySelector(".bookCards");
 const dialog = document.querySelector("dialog");
 const addBookBtn = document.querySelector("dialog+button");
@@ -6,20 +8,22 @@ const cancelBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit");
 const inputsList = document.querySelectorAll("dialog div input");
 
-function Book(title, author, pageCount, isFinished) {
+function Book(title, author, pageCount, isFinished, ID) {
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
     this.isFinished = isFinished;
+    this.ID = ID;
 }
 
 function addBookToLibrary(userInput) {
-    let newBook = new Book(...userInput);
+    let newBook = new Book(...userInput, nextBookID);
     Library.push(newBook);
 
     // creation of book card on a page
     let newBookCard = document.createElement("div");
     newBookCard.classList.add("card");
+    newBookCard.setAttribute("bookID", nextBookID);
 
     let title = document.createElement("p");
     title.classList.add("title");
@@ -48,6 +52,14 @@ function addBookToLibrary(userInput) {
     let deleteBtn = document.createElement("button");
     deleteBtn.classList.add("remove");
     deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", (e) => {
+        //remove from Library object
+        let cardID = e.target.parentNode.parentNode.getAttribute("bookID");
+        let indexInLibrary = Library.findIndex( (book) => book.ID === +cardID);
+        Library.splice(indexInLibrary, 1);
+        //remove from DOM
+        e.target.parentNode.parentNode.remove();
+    });
 
     let btnPanel = document.createElement("div");
     btnPanel.classList.add("buttonsPanel");
@@ -55,9 +67,10 @@ function addBookToLibrary(userInput) {
 
     newBookCard.append(title, author, pageCount, btnPanel);
     bookCards.append(newBookCard);
+    nextBookID++;
 };
 
-Book.prototype.removeFromLibrary = function () {
+function removeFromLibrary () {
     if (Library.includes(this))
         Library.splice(Library.indexOf(this), 1);
     else console.log("No such book in the library!");
@@ -81,6 +94,8 @@ submitBtn.addEventListener("click", (e) => {
         // input[3](checkbox) value is "on" instead of true/false, so we take it separately
         inputValues[3] = inputArray[3].checked;
         addBookToLibrary(inputValues);
+        
+        e.preventDefault();
         dialog.close();
         clearInput();
     }
