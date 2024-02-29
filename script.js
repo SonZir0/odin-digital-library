@@ -27,15 +27,15 @@ function addBookToLibrary(userInput) {
 
     let title = document.createElement("p");
     title.classList.add("title");
-    title.textContent = userInput[0];
+    title.textContent = '"' + userInput[0] + '"';
 
     let author = document.createElement("p");
     author.classList.add("author");
-    author.textContent = userInput[1];
+    author.textContent = "by " + userInput[1];
 
     let pageCount = document.createElement("p");
     pageCount.classList.add("pages");
-    pageCount.textContent = userInput[2];
+    pageCount.textContent = userInput[2] + " pages";
 
     let isFinished = document.createElement("button");
     isFinished.classList.add("status");
