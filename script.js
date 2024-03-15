@@ -1,20 +1,31 @@
-const Library = [];
-let nextBookID = 1;
+const Library = new class {
+    #booksArr = [];
+    #nextBookID = 1;
 
-const bookCards = document.querySelector(".bookCards");
-const dialog = document.querySelector("dialog");
-const addBookBtn = document.querySelector("dialog+button");
-const cancelBtn = document.querySelector(".close");
-const submitBtn = document.querySelector(".submit");
-const inputsList = document.querySelectorAll("dialog div input");
+    #Book = class {
+        constructor(title, author, pageCount, isFinished) {
+            this.title = title;
+            this.author = author;
+            this.pageCount = pageCount;
+            this.isFinished = isFinished;
+            this.ID = Library.#nextBookID++;
+        }
+    }
 
-function Book(title, author, pageCount, isFinished, ID) {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.isFinished = isFinished;
-    this.ID = ID;
+    addNewBook(userInput) {
+        let newBook = new this.#Book(...userInput);
+        this.#booksArr.push(newBook);
+    }
+
+    removeBookWithId(bookCardId) {
+        let indexInLibrary = Library.#booksArr.findIndex((book) => book.ID === +bookCardId);
+        if (indexInLibrary >= 0)
+            Library.#booksArr.splice(indexInLibrary, 1);
+        else console.log("No book with such ID!");
+    }
 }
+/*
+Refactor as separate UserInterface class
 
 function addBookToLibrary(userInput) {
     let newBook = new Book(...userInput, nextBookID);
@@ -55,7 +66,7 @@ function addBookToLibrary(userInput) {
     deleteBtn.addEventListener("click", (e) => {
         //remove from Library object
         let cardID = e.target.parentNode.parentNode.getAttribute("bookID");
-        let indexInLibrary = Library.findIndex( (book) => book.ID === +cardID);
+        let indexInLibrary = Library.findIndex((book) => book.ID === +cardID);
         Library.splice(indexInLibrary, 1);
         //remove from DOM
         e.target.parentNode.parentNode.remove();
@@ -70,11 +81,12 @@ function addBookToLibrary(userInput) {
     nextBookID++;
 };
 
-function removeFromLibrary () {
-    if (Library.includes(this))
-        Library.splice(Library.indexOf(this), 1);
-    else console.log("No such book in the library!");
-};
+const bookCards = document.querySelector(".bookCards");
+const dialog = document.querySelector("dialog");
+const addBookBtn = document.querySelector("dialog+button");
+const cancelBtn = document.querySelector(".close");
+const submitBtn = document.querySelector(".submit");
+const inputsList = document.querySelectorAll("dialog div input");
 
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
@@ -94,7 +106,7 @@ submitBtn.addEventListener("click", (e) => {
         // input[3](checkbox) value is "on" instead of true/false, so we take it separately
         inputValues[3] = inputArray[3].checked;
         addBookToLibrary(inputValues);
-        
+
         e.preventDefault();
         dialog.close();
         clearInput();
@@ -102,9 +114,9 @@ submitBtn.addEventListener("click", (e) => {
 });
 
 function clearInput() {
-    for(let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         inputsList[i].value = "";
     }
     inputsList[3].checked = false;
 }
-
+*/
